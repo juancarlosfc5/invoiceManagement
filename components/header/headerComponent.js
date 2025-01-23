@@ -2,12 +2,12 @@ class HeaderComponent extends HTMLElement {
     constructor() {
       super();
       const shadow = this.attachShadow({ mode: 'open' });
-      let id = Date.now().toString(16);
+      let id = Date.now().toString(16).toUpperCase();
       shadow.innerHTML = /*html*/ `
       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
       <div class="container text-center card">
         <div class="row align-items-start card-header">
-          <h3>No. Factura Apple Store</h3>
+          <h3>Apple Store - No. Factura</h3>
           <div class="col">
             <input class="form-control text-center" type="text" value="${id}" aria-label="Disabled input example" disabled readonly>
           </div>

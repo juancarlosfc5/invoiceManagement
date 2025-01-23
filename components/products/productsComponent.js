@@ -1,4 +1,4 @@
-import { dataBase } from "../../js/data.js";
+import { listProduct } from "../../controllers/products.js";
 
 class ProductsComponent extends HTMLElement {
     constructor() {
@@ -8,7 +8,7 @@ class ProductsComponent extends HTMLElement {
       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
       <div class="container card">
         <div class="row text-center card-header">
-          <h3>Selección de producto</h3>
+          <h3>Selección de productos</h3>
         </div>
         <div class="card-body">
           <div class="mb-3 row">
@@ -21,12 +21,10 @@ class ProductsComponent extends HTMLElement {
           <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Nombre de Producto</label>
             <div class="col-sm-10">
-              <select class="form-select" aria-label="Default select example">
-                <option selected>Open this select menu</option>
-                <option value="1">One</option>
-                <option value="2">Two</option>
-                <option value="3">Three</option>
+              <select id="productList" class="form-select" aria-label="Default select example">
+                <option value="">Choose your product</option>
               </select>
+              <div id="productSelect"></div>
             </div>
           </div>
 
@@ -45,7 +43,7 @@ class ProductsComponent extends HTMLElement {
     `;
     }
     connectedCallback() {
-
+      listProduct(this)
     }
   }
   
