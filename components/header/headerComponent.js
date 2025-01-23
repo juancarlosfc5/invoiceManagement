@@ -23,11 +23,11 @@ class HeaderComponent extends HTMLElement {
           <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Nombres</label>
             <div class="col-sm-4">
-              <input class="form-control" id="Name">
+              <input class="form-control" id="nameClient">
             </div>
             <label class="col-sm-2 col-form-label">Apellidos</label>
             <div class="col-sm-4">
-              <input class="form-control" id="lastName">
+              <input class="form-control" id="lastNameClient">
             </div>
           </div>
 
