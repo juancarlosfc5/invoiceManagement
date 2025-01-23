@@ -10,11 +10,11 @@ class ProductsComponent extends HTMLElement {
         <div class="row text-center card-header">
           <h3>Selección de productos</h3>
         </div>
-        <div class="card-body">
+        <div class="card-body text-center ">
           <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Codigo de Producto</label>
             <div class="col-sm-10">
-              <input class="form-control text-center" type="text" value="cod" aria-label="Disabled input example" disabled readonly>
+              <input id="productIdInput" class="form-control text-center" type="text" value="" aria-label="Disabled input example" disabled readonly>
             </div>
           </div>
           
@@ -31,11 +31,11 @@ class ProductsComponent extends HTMLElement {
           <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">Valor Unitario</label>
             <div class="col-sm-4">
-              <input class="form-control text-center" type="text" value="value" aria-label="Disabled input example" disabled readonly>
+              <input id="unitaryValue" class="form-control text-center" type="text" value="" aria-label="Disabled input example" disabled readonly>
             </div>
             <label class="col-sm-2 col-form-label">Cantidad</label>
             <div class="col-sm-4">
-              <input class="form-control" id="quantity">
+              <input id="number" class="form-control" type="number" min="1" step="1" id="productPriceInput">
             </div>
           </div>
         </div>
