@@ -1,13 +1,17 @@
-import { dataBase } from "././js/data.js";
-
-class ProductsComponent extends HTMLElement {
+class HeaderComponent extends HTMLElement {
     constructor() {
       super();
       const shadow = this.attachShadow({ mode: 'open' });
-      console.log(dataBase)
+      let id = Date.now().toString(16);
       shadow.innerHTML = /*html*/ `
       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
-      <div class="container">
+      <div class="container text-center card">
+        <div class="row align-items-start card-header">
+          <h3>No. Factura Apple Store</h3>
+          <div class="col">
+            <input class="form-control text-center" type="text" value="${id}" aria-label="Disabled input example" disabled readonly>
+          </div>
+        </div>
         <div class="card-body">
           <div class="mb-3 row">
             <label class="col-sm-2 col-form-label">No. Id</label>
@@ -45,8 +49,8 @@ class ProductsComponent extends HTMLElement {
     `;
     }
     connectedCallback() {
-
+      
     }
   }
   
-  customElements.define('products-component', ProductsComponent);
+  customElements.define('header-component', HeaderComponent);
