@@ -33,3 +33,14 @@ export function removeProductFromDetail(cod) {
     document.dispatchEvent(event);
   }
 }
+
+// Función para obtener los detalles del pedido
+export function getInvoiceDetails() {
+  return detailData;
+}
+
+// Función para limpiar los datos del detalle
+export function clearDetails() {
+  detailData.length = 0; // Vaciar el array
+  document.dispatchEvent(new CustomEvent("detailUpdated", { detail: [] })); // Emitir evento para actualizar la tabla
+}

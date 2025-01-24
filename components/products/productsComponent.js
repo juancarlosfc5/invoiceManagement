@@ -21,7 +21,7 @@ class ProductsComponent extends HTMLElement {
             <label class="col-sm-2 col-form-label">Nombre de Producto</label>
             <div class="col-sm-10">
               <select id="productList" class="form-select" aria-label="Default select example">
-                <option value="">Choose your product</option>
+                <option value="">Elige tu producto</option>
               </select>
               <div id="productSelect"></div>
             </div>
@@ -39,7 +39,7 @@ class ProductsComponent extends HTMLElement {
           </div>
 
           <div class="mb-3 row">
-              <button id="addButton" type="button" class="btn btn-outline-success col-sm-12">Add</button>
+              <button id="addButton" type="button" class="btn btn-outline-success col-sm-12">Agregar</button>
             </div>
         </div>
       </div>
