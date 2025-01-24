@@ -5,6 +5,7 @@ class HeaderComponent extends HTMLElement {
       let id = Date.now().toString(16).toUpperCase();
       shadow.innerHTML = /*html*/ `
       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
+      <br>
       <div class="container text-center card">
         <div class="row align-items-start card-header">
           <h3>Apple Store - No. Factura</h3>
@@ -39,7 +40,7 @@ class HeaderComponent extends HTMLElement {
           </div>
 
           <div class="mb-3 row">
-            <label class="col-sm-2 col-form-label">Email</label>
+            <label class="col-sm-2 col-form-label" type="email">Email</label>
             <div class="col-sm-10">
               <input class="form-control" id="email">
             </div>
