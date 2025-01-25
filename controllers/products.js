@@ -13,11 +13,12 @@ export function listProduct (productsComponent) {
         item.appendChild(option);
     });
 
-    // Agregar evento para actualizar los campos al seleccionar un producto
+    // Evento para actualizar los campos codigo y valor unitario al seleccionar un producto
     item.addEventListener('change', (event) => {
         const selectedProductId = event.target.value; // id seleccionado
         const selectedProduct = dataBase.find(product => product.id === selectedProductId); // Buscar producto
 
+        // Validacion del producto seleccionado
         if (selectedProduct) {
             productIdInput.value = selectedProduct.cod; // Actualizar el código
             unitaryValueInput.value = `$ ${selectedProduct.price}`; // Actualizar el precio

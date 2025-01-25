@@ -9,7 +9,7 @@ class DetailComponent extends HTMLElement {
       <br>
       <div class="container card">
         <div class="row text-center card-header">
-          <h3>Detalle de Compra</h3>
+          <h3>Detalle de la compra</h3>
         </div>
         <div class="card-body">
           <table id="detailTable" class="table table-striped">
@@ -57,7 +57,7 @@ class DetailComponent extends HTMLElement {
         tableBody.appendChild(row);
       });
 
-      // Agregar evento a los botones de eliminar
+      // Evento click de los botones de eliminar producto
       tableBody.querySelectorAll(".remove-btn").forEach((button) => {
         button.addEventListener("click", (event) => {
           const cod = event.target.dataset.cod;

@@ -41,6 +41,8 @@ class SummaryComponent extends HTMLElement {
   connectedCallback() {
     calculateSummary(this);
 
+
+    // Evento click para el pago de la factura
     const payButton = this.shadowRoot.querySelector("#payButton");
     payButton.addEventListener("click", () => {
       processPayment(this);

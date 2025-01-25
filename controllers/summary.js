@@ -1,8 +1,7 @@
 import { getInvoiceDetails } from "./detail.js";
 
-// Initialize from localStorage or set default values
+// Initialicion desde localStorage y set de valores por defecto
 let facturas = JSON.parse(localStorage.getItem("facturas")) || [];
-let invoiceNumber = JSON.parse(localStorage.getItem("invoiceNumber")) || 1;
 
 export function calculateSummary(summaryComponent) {
   const subtotalInput = summaryComponent.shadowRoot.querySelector("#subtotal");
@@ -24,6 +23,7 @@ export function calculateSummary(summaryComponent) {
   });
 }
 
+// Funcion para el pago de la factura
 export function processPayment(summaryComponent) {
   const header = getHeaderInfo();
   const detailFact = getInvoiceDetails();
@@ -43,9 +43,18 @@ export function processPayment(summaryComponent) {
     summaryComponent.shadowRoot.querySelector("#total").value.replace("$", "")
   );
 
+  // Obtener el número de factura desde el Shadow DOM de header-component
+  const headerComponent = document.querySelector("header-component").shadowRoot;
+  const invoiceID = headerComponent.querySelector("#invoiceID").value.trim();
+
+  if (!invoiceID) {
+    alert("No se pudo generar un número de factura. Verifique el componente de cabecera.");
+    return;
+  }
+
   // Crear objeto factura
   const factura = {
-    nroFactura: invoiceNumber,
+    nroFactura: invoiceID,
     header,
     detailFact,
     summary: { subtotal, iva, total },
@@ -55,15 +64,12 @@ export function processPayment(summaryComponent) {
   facturas.push(factura);
   localStorage.setItem("facturas", JSON.stringify(facturas));
 
-  // Incrementar y guardar número de factura
-  invoiceNumber++;
-  localStorage.setItem("invoiceNumber", JSON.stringify(invoiceNumber));
-
-  // Mostrar mensaje y limpiar
+  // Mostrar mensaje y recargar la página
   alert("¡Factura generada con éxito!");
-  clearAllData();
+  reloadPage();
 }
 
+// Extraer los datos personales del cliente en el header
 function getHeaderInfo() {
   const headerComponent = document.querySelector("header-component").shadowRoot;
 
@@ -80,25 +86,9 @@ function getHeaderInfo() {
   return { identificacion, nombres, apellido, direccion, email };
 }
 
-function clearAllData() {
-  // Limpiar header
-  const headerComponent = document.querySelector("header-component").shadowRoot;
-  headerComponent.querySelector("#idClient").value = "";
-  headerComponent.querySelector("#nameClient").value = "";
-  headerComponent.querySelector("#lastNameClient").value = "";
-  headerComponent.querySelector("#direction").value = "";
-  headerComponent.querySelector("#email").value = "";
-
-  // Limpiar detalle
-  const detailTable = document.querySelector("detail-component").shadowRoot.querySelector("tbody");
-  detailTable.innerHTML = "";
-
-  // Limpiar resumen
-  const summaryComponent = document.querySelector("summary-component").shadowRoot;
-  summaryComponent.querySelector("#subtotal").value = "$0.00";
-  summaryComponent.querySelector("#iva").value = "$0.00";
-  summaryComponent.querySelector("#total").value = "$0.00";
-
-  // Emitir evento para limpiar detalle
-  document.dispatchEvent(new CustomEvent("detailUpdated", { detail: [] }));
+// Recargar pagina para limpiar campos y actualizar numero de factura
+export function reloadPage() {
+  setTimeout(() => {
+    location.reload(); // Recargar la página
+  }, 500); // Esperar 500 ms antes de recargar
 }

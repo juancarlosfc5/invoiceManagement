@@ -2,10 +2,10 @@ import { listProduct } from "../../controllers/products.js";
 import { addProductToDetail } from "../../controllers/detail.js";
 
 class ProductsComponent extends HTMLElement {
-    constructor() {
-      super();
-      const shadow = this.attachShadow({ mode: 'open' });
-      shadow.innerHTML = /*html*/ `
+  constructor() {
+    super();
+    const shadow = this.attachShadow({ mode: "open" });
+    shadow.innerHTML = /*html*/ `
       <link rel="stylesheet" href="css/bootstrap/bootstrap.min.css">
       <br>
       <div class="container card">
@@ -44,24 +44,31 @@ class ProductsComponent extends HTMLElement {
         </div>
       </div>
     `;
-    }
-    connectedCallback() {
-      listProduct(this);
+  }
+  connectedCallback() {
+    
+    listProduct(this);
 
-      const shadow = this.shadowRoot;
+    // Referencia a los elementos del Shadow DOM
+    const shadow = this.shadowRoot;
     const addButton = shadow.getElementById("addButton");
     const productIdInput = shadow.getElementById("productIdInput");
     const productList = shadow.getElementById("productList");
     const unitaryValueInput = shadow.getElementById("unitaryValue");
     const quantityInput = shadow.getElementById("quantity");
 
-    // Conectar evento al botón Add
+    // Evento click del botón Add para agregar el producto al detail
     addButton.addEventListener("click", () => {
       const productId = productIdInput.value;
-      const productName = productList.options[productList.selectedIndex]?.textContent;
-      const unitaryValue = parseFloat(unitaryValueInput.value.replace("$", "").trim());
+      const productName =
+        productList.options[productList.selectedIndex]?.textContent;
+      const unitaryValue = parseFloat(
+        unitaryValueInput.value.replace("$", "").trim()
+      );
       const quantity = parseInt(quantityInput.value, 10);
 
+
+      // Validacion de datos registrados correctamente por el usuario
       if (productId && productName && unitaryValue && quantity > 0) {
         const product = {
           cod: productId,
@@ -70,6 +77,8 @@ class ProductsComponent extends HTMLElement {
           quantity: quantity,
         };
 
+
+        // 
         addProductToDetail(product);
 
         // Limpiar campos de entrada
@@ -81,7 +90,7 @@ class ProductsComponent extends HTMLElement {
         alert("Por favor, seleccione un producto y una cantidad válida.");
       }
     });
-    }
   }
-  
-  customElements.define('products-component', ProductsComponent);
+}
+
+customElements.define("products-component", ProductsComponent);
