@@ -1,5 +1,7 @@
 # Invoice Management System
 
+Link: https://invoicewebcomponent.netlify.app
+
 Este proyecto es una aplicación web para la gestión de facturas, desarrollada con JavaScript, HTML, y CSS (usando Bootstrap). Su objetivo es proporcionar una interfaz fácil de usar para generar facturas, permitiendo al cliente agregar productos, ingresar sus datos personales, y visualizar el resumen de su compra, todo mientras se actualiza dinámicamente.
 
 El sistema almacena los datos de la factura en el `localStorage` y permite consultar las facturas generadas mediante la consola del navegador.
